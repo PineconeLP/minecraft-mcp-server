@@ -109,4 +109,23 @@ export function registerInventoryTools(factory: ToolFactory, getBot: () => minef
       return factory.createResponse(`Opened ${block.name} (type: ${block.type}) at position (${block.position.x}, ${block.position.y}, ${block.position.z})`);
     }
   );
+
+  factory.registerTool(
+    "close-window",
+    "Close the window or inventory that the bot currently has open.",
+    {
+    },
+    async () => {
+      const bot = getBot();
+      const currentBotWindow = bot.currentWindow;
+
+      if (!currentBotWindow) {
+        return factory.createResponse('The bot does not have a window currently open.');
+      }
+
+      bot.closeWindow(currentBotWindow);
+
+      return factory.createResponse(`Closed bot window (type: ${currentBotWindow.type})`);
+    }
+  );
 }
