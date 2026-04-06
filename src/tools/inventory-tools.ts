@@ -102,11 +102,7 @@ export function registerInventoryTools(factory: ToolFactory, getBot: () => minef
 
       const container = await bot.openContainer(block);
 
-      if (!container) {
-        return factory.createResponse(`No container found at position (${x}, ${y}, ${z})`);
-      }
-
-      return factory.createResponse(`Opened ${block.name} (type: ${block.type}) at position (${block.position.x}, ${block.position.y}, ${block.position.z})`);
+      return factory.createResponse(`Opened container (type: ${container.type}) at position (${block.position.x}, ${block.position.y}, ${block.position.z})`);
     }
   );
 
